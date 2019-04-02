@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="text-box">
+    <h2>Welcome</h2>
+    <p>
+        Thank you very much for participating in the "{{ eval_name }}" evaluation of SynVAE.
+    </p>
+    <p>
+        SynVAE is a machine learning model which attempts to translate images into consistent audio representations. It's less about what one might expect something to sound like, but rather about similar looking images also sounding similar. With this evaluation, we want to see if that's the case.
+    </p>
+    <p>
+        The evaluation process is pretty straightforward and shouldn't take long:
+        <ol>
+            <li>First, we'll look at some example images and their corresponding audios in order to get acquainted with what the model thinks certain images should sound like.</li>
+            <li>Next, we'll present you with one audio and a selection of images. Your task will be to choose the image which you think the model has used as "inspiration".</li>
+        </ol>
+    </p>
+    <p>
+        During the evaluation, a session cookie will keep track of progress. As for your responses, they will be stored anonymously and since we don't record anything besides the selections being made, no data will be directly traceable to you.
+    </p>
+    <p>
+        If you agree with the procedure and terms above, let's begin!
+    </p>
+    <div class="main-button-box">
+        <a class="button" href="/examples/">
+            Start
+        </a>
+    </div>
+</div>
+{% endblock %}

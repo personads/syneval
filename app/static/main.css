@@ -1,0 +1,180 @@
+/*
+* element styles
+*/
+
+header {
+    padding: 0 1em;
+    text-align: right;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 12pt;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h1 span {
+    font-weight: normal;
+    color: rgb(94, 211, 178);
+}
+
+a {
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    border-color: rgba(94, 211, 178, .3);
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: rgba(94, 211, 178, 1);
+    border-color: rgba(94, 211, 178, .7);
+}
+
+audio {
+    margin-top: 2em;
+}
+
+li {
+    margin-top: .5em;
+}
+
+li:first-of-type {
+    margin-top: 0;
+}
+
+input[type="text"] {
+    font-size: 12pt;
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+/*
+* general styles
+*/
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-box {
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.login-box input[type="text"] {
+    width: 3em;
+    font-size: 1em;
+    font-style: italic;
+}
+
+.text-box {
+    margin: 3em 20%;
+    text-align: justify;
+}
+
+.info-box {
+    display: inline-block;
+    width: 60%;
+    margin: 2em;
+    padding: 1em;
+    border: 2px solid rgba(94, 211, 178, .7);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, .5);
+}
+
+.info-box small {
+    opacity: .7;
+}
+
+.main-button-box {
+    margin: 2em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.button {
+    padding: .25em .5em;
+    background: transparent;
+    border: 2px solid rgba(94, 211, 178, .5);
+    border-radius: 3px;
+    vertical-align: middle;
+    font-size: 12pt;
+    color: rgba(0, 0, 0, .5);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.button:hover {
+    color: rgba(94, 211, 178, 1);
+    border-color: rgba(94, 211, 178, .7);
+}
+
+.datum {
+    display: inline-block;
+    padding: 1em;
+    width: 10%;
+    border: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.datum img {
+    width: 100%;
+    height: auto;
+}
+
+.datum audio {
+    width: 80%;
+}
+
+.playing {
+    box-shadow: 0 0 3em rgba(193, 66, 66, .7);
+}
+
+.selected {
+    box-shadow: 0 0 2em rgba(94, 211, 178, .7);
+}
+
+.example-box .datum {
+    width: 5%;
+}
+
+.option-box .datum {
+    margin-left: 3em;
+}
+
+.option-box .datum:first-of-type {
+    margin-left: 0;
+}
+
+.option-box input[type="radio"] {
+    margin-top: 1em;
+}
+
+.navigation-bar {
+    margin-top: 2em;
+}
+
+.progress-bar {
+    display: inline-block;
+    width: 30%;
+    height: 1em;
+    margin: 0 1em;
+    padding: 0;
+    vertical-align: middle;
+    border: 1px solid rgba(0, 0, 0, .1)
+}
+
+.progress-bar div {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(94, 211, 178);
+}

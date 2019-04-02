@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% if error %}
+<div class="info-box">
+    Not quite right, sorry :/
+</div>
+{% endif %}
+<form class="login-box centered" method="post" onsubmit="this.disabled=true;">
+    "When are <input type="text" name="code" placeholder=""> going to take over the world?"<br>
+    <br>
+    <button class="button" type="submit" value="Submit">Take Over</button>
+</form>
+{% endblock %}

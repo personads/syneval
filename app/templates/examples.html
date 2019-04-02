@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Examples{% endblock %}
+
+{% block content %}
+<div class="info-box">
+    Click an image to hear the corresponding audio or <a href="#" onclick="playAllAudios(0);">play all</a>.
+</div>
+<div class="example-box">
+    {% for idx in example_idcs %}
+    <div class="datum" onclick="playPairedAudio(this);">
+        <img src="/data/{{ idx }}_orig.png" alt="Original"></img>
+        <audio>
+            <source src="/data/{{ idx }}_audio.mp3" type="audio/mp3">
+        </audio>
+    </div>
+    {% endfor %}
+</div>
+<div class="main-button-box">
+    <a class="button" href="/evaluation/0">
+        Continue
+    </a>
+</div>
+{% endblock %}

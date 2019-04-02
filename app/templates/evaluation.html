@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Evaluation{% endblock %}
+
+{% block content %}
+<div class="info-box">
+    {% if error %}
+    <strong>{{ error }}</strong><br>
+    {% endif %}
+    Choose the image which was used to generate the audio.<br>
+    <small>[space]: play &nbsp;&nbsp;|&nbsp;&nbsp; [1] - [{{ option_idcs|length }}]: select &nbsp;&nbsp;|&nbsp;&nbsp; [enter]: next</small>
+</div>
+<form id="options" class="option-box" method="post" onsubmit="this.disabled=true;">
+    {% for idx in option_idcs %}
+    <div class="datum{{ ' selected' if idx == choice_idx else ''}}" onclick="selectOption({{loop.index0}});">
+        <img src="/data/{{idx}}_orig.png" alt="Option {{loop.index}}"></img>
+        <input type="radio" name="choice" value="{{idx}}"{{ ' checked' if idx == choice_idx else ''}}>
+    </div>
+    {% endfor %}
+</form>
+<audio controls>
+    <source src="/data/truth/{{page}}.mp3" type="audio/mp3">
+</audio>
+<div class="navigation-bar">
+    {% if page < 1 %}
+    <a class="button" href="/examples/">Back</a>
+    {% else %}
+    <a class="button" href="{{page - 1}}">Back</a>
+    {% endif %}
+    <span class="progress-bar">
+        <div style="width: {{ (page * 100)/total_pages }}%"></div>
+    </span>
+    <button class="button" type="submit" value="Submit" form="options">Next</button>
+</div>
+<script type="text/javascript">
+    context = 'eval';
+</script>
+{% endblock %}

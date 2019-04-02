@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{% block title %}{% endblock %} | SynVAE Eval</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <script type="text/javascript">
+        var context = null;
+    </script>
+    <header>
+        <h1>SynVAE <span>Evaluation</span></h1>
+    </header>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+</html>
