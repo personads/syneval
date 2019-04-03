@@ -1,6 +1,6 @@
 import json, os, random
 
-from flask import Blueprint, current_app, redirect, render_template, request, session
+from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
 
 bp = Blueprint('evaluation', __name__, url_prefix='/evaluation')
 
@@ -15,7 +15,7 @@ def save_user_choices(uid, user_choices):
         json.dump(user_choices, fop)
 
 @bp.route('/<int:page>', methods=('GET','POST'))
-def render_examples(page):
+def index(page):
     error = None
     # sanity check
     total_pages = len(current_app.config['tasks'])
@@ -37,9 +37,9 @@ def render_examples(page):
             # direct to next page or end
             page += 1
             if page >= total_pages:
-                return redirect('/thanks')
+                return redirect(url_for('thanks'))
             else:
-                return redirect('/evaluation/%d' % page)
+                return redirect(url_for('evaluation.index', page=page))
         else:
             error = "Don't forget to make a selection!"
     choice_idx = user_choices[page]

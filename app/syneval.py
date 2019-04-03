@@ -16,23 +16,23 @@ def create_app():
 
     # add data path
     @app.route('/data/<path:file>')
-    def get_data(file):
+    def data(file):
         return send_from_directory(app.config['data_path'], file)
 
     # add obscured eval data path
     @app.route('/data/truth/<int:task_id>.mp3')
-    def get_eval_audio(task_id):
+    def eval_audio(task_id):
         audio_path = '%d_audio.mp3' % app.config['tasks'][task_id]['truth']
         return send_from_directory(app.config['data_path'], audio_path)
 
     # add landing page
     @app.route('/')
-    def render_intro():
+    def index():
         return render_template('intro.html', eval_name=app.config['name'])
 
     # add landing page
     @app.route('/thanks')
-    def render_thanks():
+    def thanks():
         return render_template('thanks.html')
 
     # configure blueprints
@@ -42,6 +42,7 @@ def create_app():
 
     return app
 
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
     app.run(debug=app.config.get('debug', False))

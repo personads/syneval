@@ -20,11 +20,11 @@ def is_valid_uid(uid):
     return os.path.isfile(os.path.join(current_app.config['result_path'], '%s.json' % uid))
 
 @bp.route('/login', methods=('GET', 'POST'))
-def render_login():
+def login():
     # check if already logged in
     uid = session.get('uid', None)
     if is_valid_uid(uid):
-        return redirect('/')
+        return redirect(url_for('index'))
     # check for code submission 
     error = False
     if request.method == 'POST':
@@ -33,7 +33,7 @@ def render_login():
         if code.lower() == current_app.config['code'].lower():
             session.clear()
             session['uid'] = gen_uid()
-            return redirect('/')
+            return redirect(url_for('index'))
         else:
             error = True
     # render if not logged in or on error
@@ -41,7 +41,7 @@ def render_login():
 
 @bp.before_app_request
 def check_auth():
-    if request.endpoint not in ['auth.render_login', 'static']:
+    if request.endpoint not in ['auth.login', 'static']:
         uid = session.get('uid', None)
         if not is_valid_uid(uid):
-            return redirect(url_for('auth.render_login'))
+            return redirect(url_for('auth.login'))

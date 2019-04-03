@@ -13,17 +13,17 @@
 <form id="options" class="option-box" method="post" onsubmit="this.disabled=true;">
     {% for idx in option_idcs %}
     <div class="datum{{ ' selected' if idx == choice_idx else ''}}" onclick="selectOption({{loop.index0}});">
-        <img src="/data/{{idx}}_orig.png" alt="Option {{loop.index}}"></img>
+        <img src="{{ url_for('data', file=(idx|string)+'_orig.png') }}" alt="Option {{loop.index}}"></img>
         <input type="radio" name="choice" value="{{idx}}"{{ ' checked' if idx == choice_idx else ''}}>
     </div>
     {% endfor %}
 </form>
 <audio controls>
-    <source src="/data/truth/{{page}}.mp3" type="audio/mp3">
+    <source src="{{ url_for('eval_audio', task_id=page) }}" type="audio/mp3">
 </audio>
 <div class="navigation-bar">
     {% if page < 1 %}
-    <a class="button" href="/examples/">Back</a>
+    <a class="button" href="{{ url_for('examples.index') }}">Back</a>
     {% else %}
     <a class="button" href="{{page - 1}}">Back</a>
     {% endif %}

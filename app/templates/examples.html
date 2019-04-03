@@ -9,15 +9,15 @@
 <div class="example-box">
     {% for idx in example_idcs %}
     <div class="datum" onclick="playPairedAudio(this);">
-        <img src="/data/{{ idx }}_orig.png" alt="Original"></img>
+        <img src="{{ url_for('data', file=(idx|string)+'_orig.png') }}" alt="Original"></img>
         <audio>
-            <source src="/data/{{ idx }}_audio.mp3" type="audio/mp3">
+            <source src="{{ url_for('data', file=(idx|string)+'_audio.mp3') }}" type="audio/mp3">
         </audio>
     </div>
     {% endfor %}
 </div>
 <div class="main-button-box">
-    <a class="button" href="/evaluation/0">
+    <a class="button" href="{{ url_for('evaluation.index', page=0) }}">
         Continue
     </a>
 </div>
