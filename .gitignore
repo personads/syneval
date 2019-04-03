@@ -104,5 +104,6 @@ venv.bak/
 .mypy_cache/
 
 app/config.json
+app/syneval.wsgi
 results/
 data/
