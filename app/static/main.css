@@ -37,10 +37,6 @@ a:hover {
     border-color: rgba(94, 211, 178, .7);
 }
 
-audio {
-    margin-top: 2em;
-}
-
 li {
     margin-top: .5em;
 }
@@ -147,6 +143,10 @@ input[type="text"] {
     width: 5%;
 }
 
+.option-box {
+    margin-bottom: 2em;
+}
+
 .option-box .datum {
     margin-left: 3em;
 }
@@ -177,4 +177,26 @@ input[type="text"] {
     height: 100%;
     margin: 0;
     background-color: rgb(94, 211, 178);
+}
+
+@media only screen and (max-width : 800px) {
+    .text-box {
+        margin: 3em;
+    }
+
+    .info-box {
+        width: auto;
+    }
+
+    .datum {
+        width: 20%;
+    }
+
+    .example-box .datum {
+        width: 20%;
+    }
+
+    .option-box .datum {
+        margin-left: 1em;
+    }
 }
