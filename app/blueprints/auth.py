@@ -1,4 +1,4 @@
-import json, os, random, string
+import json, os, random, string, time
 
 from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
 from werkzeug.security import generate_password_hash
@@ -17,7 +17,15 @@ def gen_uid():
 def is_valid_uid(uid):
     if not isinstance(uid, str):
         return False
-    return os.path.isfile(os.path.join(current_app.config['result_path'], '%s.json' % uid))
+    json_path = os.path.join(current_app.config['result_path'], '%s.json' % uid)
+    # check if file exists
+    file_exists = os.path.isfile(json_path)
+    if not file_exists:
+        return False
+    # check if file was modified less than 10 minutes ago
+    uid_last_modified = os.path.getmtime(json_path)
+    session_active = (time.time() - uid_last_modified) <= 60 * 10
+    return file_exists and session_active
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
