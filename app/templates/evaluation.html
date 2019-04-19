@@ -19,7 +19,7 @@
     {% endfor %}
 </form>
 <audio controls>
-    <source src="{{ url_for('eval_audio', task_id=page) }}" type="audio/mp3">
+    <source src="{{ url_for('eval_audio', task_id=page) }}" type="audio/wav">
 </audio>
 <div class="navigation-bar">
     {% if page < 1 %}

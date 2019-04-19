@@ -9,7 +9,7 @@
         Thank you very much for participating in the "{{ eval_name }}" evaluation of SynVAE.
     </p>
     <p>
-        In this research project, we are trying to automatically translate images into music using a machine learning model. It tries to find a musical "language" such that similar looking images should also translate to similar sounding music. The goal is for someone who listens to music from that language to be able to have an idea about how the corresponding images should look like.
+        In this research project, we are trying to automatically translate images into music using a machine learning model. It tries to find a musical "language" so that similar looking images should also translate into similar sounding music. For example, this might mean that green images translate into fast music and purple images into slow music. When presented with a piece of slow music, we can then be fairly certain that its corresponding image is more purple than green.
     </p>
     <p>
         The evaluation process is pretty straightforward and should only take about 10 minutes:
@@ -23,7 +23,7 @@
     </p>
     <p style="text-align: center;">
         <audio controls>
-            <source src="{{ url_for('static', filename='example.mp3') }}" type="audio/mp3">
+            <source src="{{ url_for('static', filename='example.wav') }}" type="audio/wav">
             Your browser does not seem to support audio playback.
         </audio>
     </p>

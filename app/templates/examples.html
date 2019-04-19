@@ -4,16 +4,20 @@
 
 {% block content %}
 <div class="info-box">
-    Click an image to hear the corresponding audio or <a href="#" onclick="playAllAudios(0);">play all</a>.
+    Click an image to hear the corresponding audio or <a href="#" onclick="playAllAudios(0);">play all</a>.<br>
+    <small>Listen a couple times to make sure you get the hang of it and can identify any patterns.</small>
 </div>
 <div class="example-box">
     {% for idx in example_idcs %}
     <div class="datum" onclick="playPairedAudio(this);">
         <img src="{{ url_for('data', file=(idx|string)+'_orig.png') }}" alt="Original"></img>
         <audio>
-            <source src="{{ url_for('data', file=(idx|string)+'_audio.mp3') }}" type="audio/mp3">
+            <source src="{{ url_for('data', file=(idx|string)+'_audio.wav') }}" type="audio/wav">
         </audio>
     </div>
+    {% if (loop.index % ((example_idcs|length)/num_classes)) == 0 %}
+    <br>
+    {% endif %}
     {% endfor %}
 </div>
 <div class="main-button-box">

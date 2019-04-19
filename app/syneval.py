@@ -20,9 +20,9 @@ def create_app():
         return send_from_directory(app.config['data_path'], file)
 
     # add obscured eval data path
-    @app.route('/data/truth/<int:task_id>.mp3')
+    @app.route('/data/truth/<int:task_id>')
     def eval_audio(task_id):
-        audio_path = '%d_audio.mp3' % app.config['tasks'][task_id]['truth']
+        audio_path = '%d_audio.wav' % app.config['tasks'][task_id]['truth']
         return send_from_directory(app.config['data_path'], audio_path)
 
     # add landing page
