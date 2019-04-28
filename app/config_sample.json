@@ -1,0 +1,19 @@
+{
+    "name": "SynEval",
+    "code": "",
+    "SECRET_KEY": "",
+    "data_path": "",
+    "result_path": "",
+    "classes": ["Class 1", "Class 2", "Class 3"],
+    "examples": [0, 1, 2],
+    "tasks": [
+        {
+            "truth": 0,
+            "options": [
+                3,
+                4,
+                5
+            ]
+        }
+    ]
+}

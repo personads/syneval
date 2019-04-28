@@ -21,9 +21,10 @@ def load_task(config_path):
     truths, options = [], []
     with open(config_path, 'r', encoding='utf8') as fop:
         config = json.load(fop)
-    truths = [task['truth'] for task in config['tasks']]
-    options = [[task['truth']] + task['other'] for task in config['tasks']]
-    return np.array(truths), np.array(options)
+    options = [task['options'] for task in config['tasks']]
+    truths = [task['options'][task['truth']] for task in config['tasks']]
+    truth_idcs = [task['truth'] for task in config['tasks']]
+    return np.array(truth_idcs), np.array(truths), np.array(options)
 
 def get_choice_matrix(results, options):
     # convert results into (task, choices) choice count matrix
@@ -40,11 +41,10 @@ def calc_accuracies(results, truths):
     accuracies = matches / truths.shape[0]
     return accuracies
 
-def calc_kappa(choices):
+def calc_kappa(choices, num_choices=3):
     '''Calculate Fleiss' Kappa (based on https://en.wikibooks.org/wiki/Algorithm_Implementation/Statistics/Fleiss'_kappa)'''
     num_evals = np.sum(choices[0])
     num_tasks = choices.shape[0]
-    num_choices = 3
 
     p = [0.0] * num_choices
     for j in range(num_choices):
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     # load data
     results = load_results(args.result_path)
-    truths, options = load_task(args.config_path)
+    truth_idcs, truths, options = load_task(args.config_path)
     print("Loaded %d evaluation sessions with %d tasks each." % (results.shape[0], truths.shape[0]))
 
     # calculate accuracy
@@ -92,11 +92,12 @@ if __name__ == '__main__':
     print("Fleiss' Kappa: %.2f (max agreement: %.2f%% (%d tasks))." % (kappa, (max_agreement * 100)/results.shape[0], max_agreement_idcs.size))
     print(" ", max_agreement_idcs)
 
-    max_correct_choices = np.max(choices[:, 0])
-    max_correct_choices_idcs = np.where(choices[:, 0] == max_correct_choices)[0]
+    correct_choice_counts = [choices[task_idx, truth_idx] for task_idx, truth_idx in enumerate(truth_idcs)]
+    max_correct_choices = np.max(correct_choice_counts)
+    max_correct_choices_idcs = np.where(correct_choice_counts == max_correct_choices)[0]
     print("Maximum correct choices: %.2f%% (%d tasks)" % ((max_correct_choices*100)/results.shape[0], max_correct_choices_idcs.size))
     print(" ", max_correct_choices_idcs)
-    min_correct_choices = np.min(choices[:, 0])
-    min_correct_choices_idcs = np.where(choices[:, 0] == min_correct_choices)[0]
+    min_correct_choices = np.min(correct_choice_counts)
+    min_correct_choices_idcs = np.where(correct_choice_counts == min_correct_choices)[0]
     print("Minimum correct choices: %.2f%% (%d tasks)" % ((min_correct_choices*100)/results.shape[0], min_correct_choices_idcs.size))
     print(" ", min_correct_choices_idcs)

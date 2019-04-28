@@ -20,7 +20,7 @@ def index(page):
     # sanity check
     total_pages = len(current_app.config['tasks'])
     if (page < 0) or (page >= total_pages):
-        return "Evaluation sample is out of range.", 404
+        return "Evaluation task is out of range.", 404
     # retrieve  uid
     uid = session.get('uid', None)
     if uid is None:
@@ -44,7 +44,10 @@ def index(page):
             error = "Don't forget to make a selection!"
     choice_idx = user_choices[page]
     # build evaluation page
-    truth_idx = current_app.config['tasks'][page]['truth']
-    option_idcs = current_app.config['tasks'][page]['other'] + [truth_idx]
-    random.shuffle(option_idcs)
-    return render_template('evaluation.html', error=error, truth_idx=truth_idx, option_idcs=option_idcs, choice_idx=choice_idx, page=page, total_pages=total_pages)
+    classes = current_app.config['classes']
+    options = current_app.config['tasks'][page]['options']
+    order = [i for i in range(len(options))]
+    random.shuffle(order)
+    classes = [classes[i] for i in order]
+    options = [options[i] for i in order]
+    return render_template('evaluation.html', error=error, classes=classes, options=options, choice_idx=choice_idx, page=page, total_pages=total_pages)

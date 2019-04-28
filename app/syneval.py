@@ -22,7 +22,7 @@ def create_app():
     # add obscured eval data path
     @app.route('/data/truth/<int:task_id>')
     def eval_audio(task_id):
-        audio_path = '%d_audio.wav' % app.config['tasks'][task_id]['truth']
+        audio_path = '%d_audio.wav' % app.config['tasks'][task_id]['options'][app.config['tasks'][task_id]['truth']]
         return send_from_directory(app.config['data_path'], audio_path)
 
     # add landing page
@@ -43,7 +43,7 @@ def create_app():
         if None in results:
             accuracy = None
         else:
-            truths = [task['truth'] for task in app.config['tasks']]
+            truths = [task['options'][task['truth']] for task in app.config['tasks']]
             accuracy = sum([1 for i in range(len(truths)) if truths[i] == results[i]]) / len(truths)
         return render_template('thanks.html', accuracy=accuracy)
 

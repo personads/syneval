@@ -8,13 +8,13 @@
     <strong>{{ error }}</strong><br>
     {% endif %}
     Choose the image which was used to generate the audio.<br>
-    <small>[space]: play &nbsp;&nbsp;|&nbsp;&nbsp; [1] - [{{ option_idcs|length }}]: select &nbsp;&nbsp;|&nbsp;&nbsp; [enter]: next</small>
+    <small>[space]: play &nbsp;&nbsp;|&nbsp;&nbsp; [1] - [{{ options|length }}]: select &nbsp;&nbsp;|&nbsp;&nbsp; [enter]: next</small>
 </div>
 <form id="options" class="option-box" method="post" onsubmit="this.disabled=true;">
-    {% for idx in option_idcs %}
-    <div class="datum{{ ' selected' if idx == choice_idx else ''}}" onclick="selectOption({{loop.index0}});">
-        <img src="{{ url_for('data', file=(idx|string)+'_orig.png') }}" alt="Option {{loop.index}}"></img>
-        <input type="radio" name="choice" value="{{idx}}"{{ ' checked' if idx == choice_idx else ''}}>
+    {% for idx in range(options|length) %}
+    <div class="datum{{ ' selected' if options[idx] == choice_idx else ''}}" onclick="selectOption({{loop.index0}});">
+        <img src="{{ url_for('data', file=(options[idx]|string)+'_orig.png') }}" alt="{{classes[idx]}}"></img>
+        <input type="radio" name="choice" value="{{options[idx]}}"{{ ' checked' if options[idx] == choice_idx else ''}}>
     </div>
     {% endfor %}
 </form>
