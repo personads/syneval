@@ -8,5 +8,17 @@
     <p>
         That's it! Thank you very much for participating in our evaluation.
     </p>
+    {% if accuracy %}
+    <p>
+        Your final score is {{ accuracy*100 }}%.
+        {% if accuracy >= 0.8 %}
+            Wow, that's almost perfect! Nice work!
+        {% elif accuracy >= 0.5 %}
+            Nice work! This will help us improve the model to be even better in the future :)
+        {% else %}
+            Don't worry about it! This will help us improve the model in the future :)
+        {% endif %}
+    </p>
+    {% endif %}
 </div>
 {% endblock %}
