@@ -10,12 +10,12 @@
 <div class="example-box">
     {% for idx in example_idcs %}
     <div class="datum" onclick="playPairedAudio(this);">
-        <img src="{{ url_for('data', file=(idx|string)+'_orig.png') }}" alt="Original"></img>
+        <img src="{{ url_for('data', file=(idx|string)+'_orig.png') }}" alt="{{ classes[(loop.index0 / ((example_idcs|length)/(classes|length)))|round(method='floor')|int] }}"></img>
         <audio>
             <source src="{{ url_for('data', file=(idx|string)+'_audio.wav') }}" type="audio/wav">
         </audio>
     </div>
-    {% if (loop.index % ((example_idcs|length)/num_classes)) == 0 %}
+    {% if (loop.index % ((example_idcs|length)/(classes|length))) == 0 %}
     <br>
     {% endif %}
     {% endfor %}

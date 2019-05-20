@@ -4,6 +4,6 @@ bp = Blueprint('examples', __name__, url_prefix='/examples')
 
 @bp.route('/')
 def index():
-    train_idcs = current_app.config['examples']
-    num_classes = len(current_app.config['classes'])
-    return render_template('examples.html', example_idcs=train_idcs, num_classes=num_classes)
+    example_idcs = current_app.config['examples']
+    classes = current_app.config['classes']
+    return render_template('examples.html', classes=classes, example_idcs=example_idcs)
