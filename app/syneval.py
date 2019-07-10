@@ -28,7 +28,7 @@ def create_app():
     # add landing page
     @app.route('/')
     def index():
-        return render_template('intro.html', eval_name=app.config['name'])
+        return render_template('intro.html', eval_name=app.config['name'], eval_disclaimer=app.config.get('disclaimer', None))
 
     # add landing page
     @app.route('/thanks')
@@ -45,6 +45,8 @@ def create_app():
         else:
             truths = [task['options'][task['truth']] for task in app.config['tasks']]
             accuracy = sum([1 for i in range(len(truths)) if truths[i] == results[i]]) / len(truths)
+            # clear session
+            session.clear()
         return render_template('thanks.html', accuracy=accuracy)
 
     # configure blueprints

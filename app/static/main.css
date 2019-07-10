@@ -117,7 +117,8 @@ input[type="text"] {
 .datum {
     display: inline-block;
     padding: 1em;
-    width: 10%;
+    min-width: 10%;
+    max-width: 15%;
     border: 1px solid rgba(0, 0, 0, .1);
     cursor: pointer;
 }
@@ -140,7 +141,8 @@ input[type="text"] {
 }
 
 .example-box .datum {
-    width: 5%;
+    min-width: 5%;
+    max-width: 10%;
 }
 
 .option-box {

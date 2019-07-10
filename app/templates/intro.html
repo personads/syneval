@@ -30,6 +30,11 @@
     <p>
         During the evaluation, a session cookie will help keep track of progress. As for your responses, they will be stored anonymously and since we don't record anything besides the actual responses, no data will be directly traceable to you.
     </p>
+    {% if eval_disclaimer %}
+    <p>
+        {{ eval_disclaimer }}
+    </p>
+    {% endif %}
     <p>
         If you agree with the procedure and terms above, let's begin!
     </p>
