@@ -14,7 +14,7 @@ The tool stores the minimum amount of user-specific data as possible. It generat
 This tool requires Python 3 and a number of associated packages which can be found in `requirements.txt`. The installation in a virtual environment is highly recommended.
 
 ```bash
-$ pip -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ## Configuration
